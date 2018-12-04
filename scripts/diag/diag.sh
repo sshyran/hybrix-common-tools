@@ -6,11 +6,11 @@ NODEINST="`which node`"
 UGLIFY=node_modules/uglify-es/bin/uglifyjs
 CSSMIN=node_modules/cssmin/bin/cssmin
 
-# $HYBRIDD/node/scripts/npm  => $HYBRIDD
+# $HYBRIXD/node/scripts/npm  => $HYBRIXD
 SCRIPTDIR="`dirname \"$0\"`"
-HYBRIDD="`cd \"$SCRIPTDIR/../../..\" && pwd`"
+HYBRIXD="`cd \"$SCRIPTDIR/../../..\" && pwd`"
 
-NODE="$HYBRIDD/node"
+NODE="$HYBRIXD/node"
 
 echo "SCRIPTDIR: "$SCRIPTDIR
 
@@ -54,34 +54,34 @@ checkGit(){
 }
 
 
-echo "[.] Validate hybridd/node."
-if [ -d "$HYBRIDD/node" ]; then
-    echo " [.] hybridd/node found."
+echo "[.] Validate hybrixd/node."
+if [ -d "$HYBRIXD/node" ]; then
+    echo " [.] hybrixd/node found."
 
-    if [ -L "$HYBRIDD/node/common" ]; then
-        echo " [.] hybridd/node/common found."
-        if [ "$(readlink $HYBRIDD/node/common)" = "$HYBRIDD/common" ]; then
-            echo " [.] hybridd/node/common linked correctly."
+    if [ -L "$HYBRIXD/node/common" ]; then
+        echo " [.] hybrixd/node/common found."
+        if [ "$(readlink $HYBRIXD/node/common)" = "$HYBRIXD/common" ]; then
+            echo " [.] hybrixd/node/common linked correctly."
         else
-            echo "$RED [!] hybridd/node/common linked incorrectly."
-            echo "     Expected: $HYBRIDD/common"
-            echo "     Found:    $(readlink $HYBRIDD/node/common)$RESET"
+            echo "$RED [!] hybrixd/node/common linked incorrectly."
+            echo "     Expected: $HYBRIXD/common"
+            echo "     Found:    $(readlink $HYBRIXD/node/common)$RESET"
         fi
     else
-        echo " [!] hybridd/node/common not linked."
+        echo " [!] hybrixd/node/common not linked."
     fi
 
-    if [ -L "$HYBRIDD/node/node_binaries" ]; then
-        echo " [.] hybridd/node/node_binaries found."
-        if [ "$(readlink $HYBRIDD/node/node_binaries)" = "$HYBRIDD/nodejs/$SYSTEM" ]; then
-            echo " [.] hybridd/node/node_binaries linked correctly."
+    if [ -L "$HYBRIXD/node/node_binaries" ]; then
+        echo " [.] hybrixd/node/node_binaries found."
+        if [ "$(readlink $HYBRIXD/node/node_binaries)" = "$HYBRIXD/nodejs/$SYSTEM" ]; then
+            echo " [.] hybrixd/node/node_binaries linked correctly."
         else
-            echo "$RED [!] hybridd/node/node_binaries linked incorrectly."
-            echo "     Expected: $HYBRIDD/nodejs/$SYSTEM"
-            echo "     Found:    $(readlink $HYBRIDD/node/node_binaries)$RESET"
+            echo "$RED [!] hybrixd/node/node_binaries linked incorrectly."
+            echo "     Expected: $HYBRIXD/nodejs/$SYSTEM"
+            echo "     Found:    $(readlink $HYBRIXD/node/node_binaries)$RESET"
         fi
     else
-        echo "$RED [!] hybridd/node/node_binaries not linked.$RESET"
+        echo "$RED [!] hybrixd/node/node_binaries not linked.$RESET"
     fi
 
     #TODO interface dist
@@ -91,263 +91,263 @@ if [ -d "$HYBRIDD/node" ]; then
     #TODO check if up to date
 
 
-    cd "$HYBRIDD/node/"
+    cd "$HYBRIXD/node/"
     checkGit
 
 
 else
-    echo " [!] hybridd/node not found."
+    echo " [!] hybrixd/node not found."
 fi
 
 
-echo "[.] Validate hybridd/web-wallet."
-if [ -d "$HYBRIDD/web-wallet" ]; then
-    echo " [.] hybridd/web-wallet found."
+echo "[.] Validate hybrixd/web-wallet."
+if [ -d "$HYBRIXD/web-wallet" ]; then
+    echo " [.] hybrixd/web-wallet found."
 
-    if [ -L "$HYBRIDD/web-wallet/common" ]; then
-        echo " [.] hybridd/web-wallet/common found."
-        if [ "$(readlink $HYBRIDD/web-wallet/common)" = "$HYBRIDD/common" ]; then
-            echo " [.] hybridd/web-wallet/common linked correctly."
+    if [ -L "$HYBRIXD/web-wallet/common" ]; then
+        echo " [.] hybrixd/web-wallet/common found."
+        if [ "$(readlink $HYBRIXD/web-wallet/common)" = "$HYBRIXD/common" ]; then
+            echo " [.] hybrixd/web-wallet/common linked correctly."
         else
-            echo "$RED [!] hybridd/web-wallet/common linked incorrectly."
-            echo "     Expected: $HYBRIDD/common"
-            echo "     Found:    $(readlink $HYBRIDD/web-wallet/common)$RESET"
+            echo "$RED [!] hybrixd/web-wallet/common linked incorrectly."
+            echo "     Expected: $HYBRIXD/common"
+            echo "     Found:    $(readlink $HYBRIXD/web-wallet/common)$RESET"
         fi
     else
-        echo "$RED [!] hybridd/web-wallet/common not linked.$RESET"
+        echo "$RED [!] hybrixd/web-wallet/common not linked.$RESET"
     fi
 
-    if [ -L "$HYBRIDD/web-wallet/interface" ]; then
-        echo " [.] hybridd/web-wallet/interface found."
-        if [ "$(readlink $HYBRIDD/web-wallet/interface)" = "$HYBRIDD/interface/dist" ]; then
-            echo " [.] hybridd/web-wallet/interface linked correctly."
+    if [ -L "$HYBRIXD/web-wallet/interface" ]; then
+        echo " [.] hybrixd/web-wallet/interface found."
+        if [ "$(readlink $HYBRIXD/web-wallet/interface)" = "$HYBRIXD/interface/dist" ]; then
+            echo " [.] hybrixd/web-wallet/interface linked correctly."
         else
-            echo "$RED [!] hybridd/web-wallet/interface linked incorrectly."
-            echo "     Expected: $HYBRIDD/interface/dist"
-            echo "     Found:    $(readlink $HYBRIDD/web-wallet/interface)$RESET"
+            echo "$RED [!] hybrixd/web-wallet/interface linked incorrectly."
+            echo "     Expected: $HYBRIXD/interface/dist"
+            echo "     Found:    $(readlink $HYBRIXD/web-wallet/interface)$RESET"
         fi
     else
-        echo "$RED [!] hybridd/web-wallet/interface not linked.$RESET"
+        echo "$RED [!] hybrixd/web-wallet/interface not linked.$RESET"
     fi
 
-    if [ -L "$HYBRIDD/web-wallet/node_binaries" ]; then
-        echo " [.] hybridd/web-wallet/node_binaries found."
-        if [ "$(readlink $HYBRIDD/web-wallet/node_binaries)" = "$HYBRIDD/nodejs/$SYSTEM" ]; then
-            echo " [.] hybridd/web-wallet/node_binaries linked correctly."
+    if [ -L "$HYBRIXD/web-wallet/node_binaries" ]; then
+        echo " [.] hybrixd/web-wallet/node_binaries found."
+        if [ "$(readlink $HYBRIXD/web-wallet/node_binaries)" = "$HYBRIXD/nodejs/$SYSTEM" ]; then
+            echo " [.] hybrixd/web-wallet/node_binaries linked correctly."
         else
-            echo "$RED [!] hybridd/web-wallet/node_binaries linked incorrectly."
-            echo "     Expected: $HYBRIDD/nodejs/$SYSTEM"
-            echo "     Found:    $(readlink $HYBRIDD/web-wallet/node_binaries)$RESET"
+            echo "$RED [!] hybrixd/web-wallet/node_binaries linked incorrectly."
+            echo "     Expected: $HYBRIXD/nodejs/$SYSTEM"
+            echo "     Found:    $(readlink $HYBRIXD/web-wallet/node_binaries)$RESET"
         fi
     else
-        echo "$RED [!] hybridd/web-wallet/node_binaries not linked.$RESET"
+        echo "$RED [!] hybrixd/web-wallet/node_binaries not linked.$RESET"
     fi
 
-    cd "$HYBRIDD/web-wallet/"
+    cd "$HYBRIXD/web-wallet/"
     checkGit
 else
-    echo " [.] hybridd/web-wallet not found."
+    echo " [.] hybrixd/web-wallet not found."
 fi
 
 
-echo "[.] Validate hybridd/tui-wallet."
-if [ -d "$HYBRIDD/tui-wallet" ]; then
-    echo " [.] hybridd/tui-wallet found."
+echo "[.] Validate hybrixd/tui-wallet."
+if [ -d "$HYBRIXD/tui-wallet" ]; then
+    echo " [.] hybrixd/tui-wallet found."
 
-    if [ -L "$HYBRIDD/tui-wallet/common" ]; then
-        echo " [.] hybridd/tui-wallet/common found."
-        if [ "$(readlink $HYBRIDD/tui-wallet/common)" = "$HYBRIDD/common" ]; then
-            echo " [.] hybridd/tui-wallet/common linked correctly."
+    if [ -L "$HYBRIXD/tui-wallet/common" ]; then
+        echo " [.] hybrixd/tui-wallet/common found."
+        if [ "$(readlink $HYBRIXD/tui-wallet/common)" = "$HYBRIXD/common" ]; then
+            echo " [.] hybrixd/tui-wallet/common linked correctly."
         else
-            echo "$RED [!] hybridd/tui-wallet/common linked incorrectly."
-            echo "     Expected: $HYBRIDD/common"
-            echo "     Found:    $(readlink $HYBRIDD/tui-wallet/common)$RESET"
+            echo "$RED [!] hybrixd/tui-wallet/common linked incorrectly."
+            echo "     Expected: $HYBRIXD/common"
+            echo "     Found:    $(readlink $HYBRIXD/tui-wallet/common)$RESET"
         fi
     else
-        echo "$RED [!] hybridd/tui-wallet/common not linked.$RESET"
+        echo "$RED [!] hybrixd/tui-wallet/common not linked.$RESET"
     fi
 
-    if [ -L "$HYBRIDD/tui-wallet/interface" ]; then
-        echo " [.] hybridd/tui-wallet/interface found."
-        if [ "$(readlink $HYBRIDD/tui-wallet/interface)" = "$HYBRIDD/interface/dist" ]; then
-            echo " [.] hybridd/tui-wallet/interface linked correctly."
+    if [ -L "$HYBRIXD/tui-wallet/interface" ]; then
+        echo " [.] hybrixd/tui-wallet/interface found."
+        if [ "$(readlink $HYBRIXD/tui-wallet/interface)" = "$HYBRIXD/interface/dist" ]; then
+            echo " [.] hybrixd/tui-wallet/interface linked correctly."
         else
-            echo "$RED [!] hybridd/tui-wallet/interface linked incorrectly."
-            echo "     Expected: $HYBRIDD/interface/dist"
-            echo "     Found:    $(readlink $HYBRIDD/tui-wallet/interface)$RESET"
+            echo "$RED [!] hybrixd/tui-wallet/interface linked incorrectly."
+            echo "     Expected: $HYBRIXD/interface/dist"
+            echo "     Found:    $(readlink $HYBRIXD/tui-wallet/interface)$RESET"
         fi
     else
-        echo "$RED [!] hybridd/tui-wallet/interface not linked.$RESET"
+        echo "$RED [!] hybrixd/tui-wallet/interface not linked.$RESET"
     fi
 
-    if [ -L "$HYBRIDD/tui-wallet/node_binaries" ]; then
-        echo " [.] hybridd/tui-wallet/node_binaries found."
-        if [ "$(readlink $HYBRIDD/tui-wallet/node_binaries)" = "$HYBRIDD/nodejs/$SYSTEM" ]; then
-            echo " [.] hybridd/tui-wallet/node_binaries linked correctly"
+    if [ -L "$HYBRIXD/tui-wallet/node_binaries" ]; then
+        echo " [.] hybrixd/tui-wallet/node_binaries found."
+        if [ "$(readlink $HYBRIXD/tui-wallet/node_binaries)" = "$HYBRIXD/nodejs/$SYSTEM" ]; then
+            echo " [.] hybrixd/tui-wallet/node_binaries linked correctly"
         else
-            echo "$RED [!] hybridd/tui-wallet/node_binaries linked incorrectly."
-            echo "     Expected: $HYBRIDD/nodejs/$SYSTEM"
-            echo "     Found:    $(readlink $HYBRIDD/tui-wallet/node_binaries)$RESET"
+            echo "$RED [!] hybrixd/tui-wallet/node_binaries linked incorrectly."
+            echo "     Expected: $HYBRIXD/nodejs/$SYSTEM"
+            echo "     Found:    $(readlink $HYBRIXD/tui-wallet/node_binaries)$RESET"
         fi
     else
-        echo "$RED [!] hybridd/tui-wallet/node_binaries not linked.$RESET"
+        echo "$RED [!] hybrixd/tui-wallet/node_binaries not linked.$RESET"
     fi
 
-    cd "$HYBRIDD/tui-wallet/"
-    checkGit
-
-else
-    echo " [.] hybridd/tui-wallet not found."
-fi
-
-echo "[.] Validate hybridd/cli-wallet."
-if [ -d "$HYBRIDD/cli-wallet" ]; then
-    echo " [.] hybridd/cli-wallet found."
-
-    if [ -L "$HYBRIDD/cli-wallet/common" ]; then
-        echo " [.] hybridd/cli-wallet/common found."
-        if [ "$(readlink $HYBRIDD/cli-wallet/common)" = "$HYBRIDD/common" ]; then
-            echo " [.] hybridd/cli-wallet/common linked correctly."
-        else
-            echo "$RED [!] hybridd/cli-wallet/common linked incorrectly."
-            echo "     Expected: $HYBRIDD/common"
-            echo "     Found:    $(readlink $HYBRIDD/cli-wallet/common)$RESET"
-        fi
-    else
-        echo "$RED [!] hybridd/cli-wallet/common not linked.$RESET"
-    fi
-
-    if [ -L "$HYBRIDD/cli-wallet/interface" ]; then
-        echo " [.] hybridd/cli-wallet/interface found."
-        if [ "$(readlink $HYBRIDD/cli-wallet/interface)" = "$HYBRIDD/interface/dist" ]; then
-            echo " [.] hybridd/cli-wallet/interface linked correctly."
-        else
-            echo "$RED [!] hybridd/cli-wallet/interface linked incorrectly."
-            echo "     Expected: $HYBRIDD/interface/dist"
-            echo "     Found:    $(readlink $HYBRIDD/cli-wallet/interface)$RESET"
-        fi
-    else
-        echo "$RED [!] hybridd/cli-wallet/interface not linked.$RESET"
-    fi
-
-    if [ -L "$HYBRIDD/cli-wallet/node_binaries" ]; then
-        echo " [.] hybridd/cli-wallet/node_binaries found."
-        if [ "$(readlink $HYBRIDD/cli-wallet/node_binaries)" = "$HYBRIDD/nodejs/$SYSTEM" ]; then
-            echo " [.] hybridd/cli-wallet/node_binaries linked correctly."
-        else
-            echo "$RED [!] hybridd/cli-wallet/node_binaries linked incorrectly."
-            echo "     Expected: $HYBRIDD/nodejs/$SYSTEM"
-            echo "     Found:    $(readlink $HYBRIDD/cli-wallet/node_binaries)$RESET"
-        fi
-    else
-        echo "$RED [!] hybridd/cli-wallet/node_binaries not linked.$RESET"
-    fi
-
-    cd "$HYBRIDD/cli-wallet/"
+    cd "$HYBRIXD/tui-wallet/"
     checkGit
 
 else
-    echo " [.] hybridd/cli-wallet not found."
+    echo " [.] hybrixd/tui-wallet not found."
 fi
 
+echo "[.] Validate hybrixd/cli-wallet."
+if [ -d "$HYBRIXD/cli-wallet" ]; then
+    echo " [.] hybrixd/cli-wallet found."
 
-echo "[.] Validate hybridd/deterministic."
-if [ -d "$HYBRIDD/deterministic" ]; then
-    echo " [.] hybridd/deterministic found."
-
-    if [ -L "$HYBRIDD/deterministic/common" ]; then
-        echo " [.] hybridd/deterministic/common found."
-        if [ "$(readlink $HYBRIDD/deterministic/common)" = "$HYBRIDD/common" ]; then
-            echo " [.] hybridd/deterministic/common linked correctly."
+    if [ -L "$HYBRIXD/cli-wallet/common" ]; then
+        echo " [.] hybrixd/cli-wallet/common found."
+        if [ "$(readlink $HYBRIXD/cli-wallet/common)" = "$HYBRIXD/common" ]; then
+            echo " [.] hybrixd/cli-wallet/common linked correctly."
         else
-            echo "RED [!] hybridd/deterministic/common linked incorrectly."
-            echo "     Expected: $HYBRIDD/common"
-            echo "     Found:    $(readlink $HYBRIDD/deterministic/common)$RESET"
+            echo "$RED [!] hybrixd/cli-wallet/common linked incorrectly."
+            echo "     Expected: $HYBRIXD/common"
+            echo "     Found:    $(readlink $HYBRIXD/cli-wallet/common)$RESET"
         fi
     else
-        echo "$RED [!] hybridd/deterministic/common not linked.$RESET"
+        echo "$RED [!] hybrixd/cli-wallet/common not linked.$RESET"
     fi
 
-    if [ -L "$HYBRIDD/deterministic/interface" ]; then
-        echo " [.] hybridd/deterministic/interface found."
-        if [ "$(readlink $HYBRIDD/deterministic/interface)" = "$HYBRIDD/interface/dist" ]; then
-            echo " [.] hybridd/deterministic/interface linked correctly."
+    if [ -L "$HYBRIXD/cli-wallet/interface" ]; then
+        echo " [.] hybrixd/cli-wallet/interface found."
+        if [ "$(readlink $HYBRIXD/cli-wallet/interface)" = "$HYBRIXD/interface/dist" ]; then
+            echo " [.] hybrixd/cli-wallet/interface linked correctly."
         else
-            echo "$RED [!] hybridd/deterministic/interface linked incorrectly."
-            echo "     Expected: $HYBRIDD/interface/dist"
-            echo "     Found:    $(readlink $HYBRIDD/deterministic/interface)$RESET"
+            echo "$RED [!] hybrixd/cli-wallet/interface linked incorrectly."
+            echo "     Expected: $HYBRIXD/interface/dist"
+            echo "     Found:    $(readlink $HYBRIXD/cli-wallet/interface)$RESET"
         fi
     else
-        echo "$RED [!] hybridd/deterministic/interface not linked.$RESET"
+        echo "$RED [!] hybrixd/cli-wallet/interface not linked.$RESET"
     fi
 
-    if [ -L "$HYBRIDD/deterministic/node_binaries" ]; then
-        echo " [.] hybridd/deterministic/node_binaries found."
-        if [ "$(readlink $HYBRIDD/deterministic/node_binaries)" = "$HYBRIDD/nodejs/$SYSTEM" ]; then
-            echo " [.] hybridd/deterministic/node_binaries linked correctly."
+    if [ -L "$HYBRIXD/cli-wallet/node_binaries" ]; then
+        echo " [.] hybrixd/cli-wallet/node_binaries found."
+        if [ "$(readlink $HYBRIXD/cli-wallet/node_binaries)" = "$HYBRIXD/nodejs/$SYSTEM" ]; then
+            echo " [.] hybrixd/cli-wallet/node_binaries linked correctly."
         else
-            echo "$RED [!] hybridd/deterministic/node_binaries linked incorrectly."
-            echo "     Expected: $HYBRIDD/nodejs/$SYSTEM"
-            echo "     Found:    $(readlink $HYBRIDD/deterministic/node_binaries)$RESET"
+            echo "$RED [!] hybrixd/cli-wallet/node_binaries linked incorrectly."
+            echo "     Expected: $HYBRIXD/nodejs/$SYSTEM"
+            echo "     Found:    $(readlink $HYBRIXD/cli-wallet/node_binaries)$RESET"
         fi
     else
-        echo "$RED [!] hybridd/deterministic/node_binaries not linked.$RESET"
+        echo "$RED [!] hybrixd/cli-wallet/node_binaries not linked.$RESET"
     fi
 
-    cd "$HYBRIDD/deterministic/"
+    cd "$HYBRIXD/cli-wallet/"
     checkGit
 
 else
-    echo " [.] hybridd/deterministic not found."
+    echo " [.] hybrixd/cli-wallet not found."
 fi
 
 
-echo "[.] Validate hybridd/interface."
-if [ -d "$HYBRIDD/interface" ]; then
-    echo " [.] hybridd/interface found."
+echo "[.] Validate hybrixd/deterministic."
+if [ -d "$HYBRIXD/deterministic" ]; then
+    echo " [.] hybrixd/deterministic found."
 
-    if [ -L "$HYBRIDD/interface/common" ]; then
-        echo " [.] hybridd/interface/common found."
-        if [ "$(readlink $HYBRIDD/interface/common)" = "$HYBRIDD/common" ]; then
-            echo " [.] hybridd/interface/common linked correctly."
+    if [ -L "$HYBRIXD/deterministic/common" ]; then
+        echo " [.] hybrixd/deterministic/common found."
+        if [ "$(readlink $HYBRIXD/deterministic/common)" = "$HYBRIXD/common" ]; then
+            echo " [.] hybrixd/deterministic/common linked correctly."
         else
-            echo "$RED [!] hybridd/interface/common linked incorrectly."
-            echo "     Expected: $HYBRIDD/common"
-            echo "     Found:    $(readlink $HYBRIDD/interface/common)$RESET"
+            echo "RED [!] hybrixd/deterministic/common linked incorrectly."
+            echo "     Expected: $HYBRIXD/common"
+            echo "     Found:    $(readlink $HYBRIXD/deterministic/common)$RESET"
         fi
     else
-        echo "$RED [!] hybridd/interface/common not linked.$RESET"
+        echo "$RED [!] hybrixd/deterministic/common not linked.$RESET"
     fi
 
-    if [ -L "$HYBRIDD/interface/node_binaries" ]; then
-        echo " [.] hybridd/interface/node_binaries found."
-        if [ "$(readlink $HYBRIDD/interface/node_binaries)" = "$HYBRIDD/nodejs/$SYSTEM" ]; then
-            echo " [.] hybridd/interface/node_binaries linked correctly."
+    if [ -L "$HYBRIXD/deterministic/interface" ]; then
+        echo " [.] hybrixd/deterministic/interface found."
+        if [ "$(readlink $HYBRIXD/deterministic/interface)" = "$HYBRIXD/interface/dist" ]; then
+            echo " [.] hybrixd/deterministic/interface linked correctly."
         else
-            echo "$RED [!] hybridd/interface/node_binaries linked incorrectly."
-            echo "     Expected: $HYBRIDD/nodejs/$SYSTEM"
-            echo "     Found:    $(readlink $HYBRIDD/interface/node_binaries)$RESET"
+            echo "$RED [!] hybrixd/deterministic/interface linked incorrectly."
+            echo "     Expected: $HYBRIXD/interface/dist"
+            echo "     Found:    $(readlink $HYBRIXD/deterministic/interface)$RESET"
         fi
     else
-        echo "$RED [!] hybridd/interface/node_binaries not linked.$RESET"
+        echo "$RED [!] hybrixd/deterministic/interface not linked.$RESET"
     fi
 
-    cd "$HYBRIDD/interface/"
+    if [ -L "$HYBRIXD/deterministic/node_binaries" ]; then
+        echo " [.] hybrixd/deterministic/node_binaries found."
+        if [ "$(readlink $HYBRIXD/deterministic/node_binaries)" = "$HYBRIXD/nodejs/$SYSTEM" ]; then
+            echo " [.] hybrixd/deterministic/node_binaries linked correctly."
+        else
+            echo "$RED [!] hybrixd/deterministic/node_binaries linked incorrectly."
+            echo "     Expected: $HYBRIXD/nodejs/$SYSTEM"
+            echo "     Found:    $(readlink $HYBRIXD/deterministic/node_binaries)$RESET"
+        fi
+    else
+        echo "$RED [!] hybrixd/deterministic/node_binaries not linked.$RESET"
+    fi
+
+    cd "$HYBRIXD/deterministic/"
     checkGit
 
 else
-    echo " [.] hybridd/interface not found."
+    echo " [.] hybrixd/deterministic not found."
 fi
 
-echo "[.] Validate hybridd/common."
-if [ -d "$HYBRIDD/common" ]; then
-    echo " [.] hybridd/common found."
-    cd "$HYBRIDD/common"
+
+echo "[.] Validate hybrixd/interface."
+if [ -d "$HYBRIXD/interface" ]; then
+    echo " [.] hybrixd/interface found."
+
+    if [ -L "$HYBRIXD/interface/common" ]; then
+        echo " [.] hybrixd/interface/common found."
+        if [ "$(readlink $HYBRIXD/interface/common)" = "$HYBRIXD/common" ]; then
+            echo " [.] hybrixd/interface/common linked correctly."
+        else
+            echo "$RED [!] hybrixd/interface/common linked incorrectly."
+            echo "     Expected: $HYBRIXD/common"
+            echo "     Found:    $(readlink $HYBRIXD/interface/common)$RESET"
+        fi
+    else
+        echo "$RED [!] hybrixd/interface/common not linked.$RESET"
+    fi
+
+    if [ -L "$HYBRIXD/interface/node_binaries" ]; then
+        echo " [.] hybrixd/interface/node_binaries found."
+        if [ "$(readlink $HYBRIXD/interface/node_binaries)" = "$HYBRIXD/nodejs/$SYSTEM" ]; then
+            echo " [.] hybrixd/interface/node_binaries linked correctly."
+        else
+            echo "$RED [!] hybrixd/interface/node_binaries linked incorrectly."
+            echo "     Expected: $HYBRIXD/nodejs/$SYSTEM"
+            echo "     Found:    $(readlink $HYBRIXD/interface/node_binaries)$RESET"
+        fi
+    else
+        echo "$RED [!] hybrixd/interface/node_binaries not linked.$RESET"
+    fi
+
+    cd "$HYBRIXD/interface/"
+    checkGit
+
+else
+    echo " [.] hybrixd/interface not found."
+fi
+
+echo "[.] Validate hybrixd/common."
+if [ -d "$HYBRIXD/common" ]; then
+    echo " [.] hybrixd/common found."
+    cd "$HYBRIXD/common"
     checkGit
 
     #TODO check if up to date
 else
-    echo " [!] hybridd/common not found."
+    echo " [!] hybrixd/common not found."
 fi
 
 export PATH="$OLDPATH"
