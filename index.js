@@ -292,6 +292,8 @@ if (typeof module !== 'undefined') {
     generateInitialSessionData,
     generateSecondarySessionData,
     increaseSessionStep,
+    nextStep,
+    readSession,
     seedGenerator,
     sessionStep1Reply,
     validatePasswordLength,
