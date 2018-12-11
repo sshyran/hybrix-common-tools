@@ -1,5 +1,7 @@
 var UrlBase64 = require('./crypto/urlbase64');
 var sjcl = require('./crypto/sjcl');
+var DJB2 = require('./crypto/hashDJB2');
+var base32ToHex = require('./crypto/hex2base32').base32ToHex;
 
 function clean (dirty) {
   if (typeof dirty !== 'undefined') {
@@ -247,6 +249,22 @@ function validateUserIDLength (userid) {
   return typeof userid === 'string' && userid.length === 16;
 }
 
+function validateUseridForLegacyWallets (userID) {
+  var hxid = base32ToHex(userID).toUpperCase();
+  var hxidSubStr = hxid.substr(12, 4);
+  var hxidHash = DJB2.hash(hxid.substr(0, 12)).substr(0, 4);
+  return hxidHash === hxidSubStr;
+}
+
+function validatePassForLegacyWallets (userID, pass) {
+  if (userID === pass) { return false; }
+  var hxid = base32ToHex(userID).toLowerCase();
+  var passwordUpperCase = pass.toUpperCase();
+  var hxidSubStr = hxid.substr(16, 4).toUpperCase();
+  var hxidHash = DJB2.hash(hxid.substr(0, 12) + passwordUpperCase).substr(4, 4);
+  return hxidHash === hxidSubStr;
+}
+
 exports.commonUtils = {
   activate,
   clean,
@@ -258,7 +276,10 @@ exports.commonUtils = {
   seedGenerator,
   sessionStep1Reply,
   validatePasswordLength,
-  validateUserIDLength
+  validateUserIDLength,
+  validateUseridForLegacyWallets,
+  validatePassForLegacyWallets
+
 };
 
 if (typeof module !== 'undefined') {
@@ -269,11 +290,12 @@ if (typeof module !== 'undefined') {
     generateKeys,
     generateInitialSessionData,
     generateSecondarySessionData,
-    nextStep,
-    readSession,
+    increaseSessionStep,
     seedGenerator,
     sessionStep1Reply,
     validatePasswordLength,
-    validateUserIDLength
+    validateUserIDLength,
+    validateUseridForLegacyWallets,
+    validatePassForLegacyWallets
   };
 }
