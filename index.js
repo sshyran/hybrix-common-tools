@@ -272,6 +272,7 @@ exports.commonUtils = {
   generateKeys,
   generateInitialSessionData,
   generateSecondarySessionData,
+  increaseSessionStep,
   nextStep,
   readSession,
   seedGenerator,
@@ -284,21 +285,5 @@ exports.commonUtils = {
 };
 
 if (typeof module !== 'undefined') {
-  module.exports = {
-    activate,
-    clean,
-    continueSession,
-    generateKeys,
-    generateInitialSessionData,
-    generateSecondarySessionData,
-    increaseSessionStep,
-    nextStep,
-    readSession,
-    seedGenerator,
-    sessionStep1Reply,
-    validatePasswordLength,
-    validateUserIDLength,
-    validateUseridForLegacyWallets,
-    validatePassForLegacyWallets
-  };
+  module.exports = exports.commonUtils;
 }
