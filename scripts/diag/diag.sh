@@ -114,7 +114,7 @@ if [ -d "$HYBRIXD/web-wallet" ]; then
             echo "     Found:    $(readlink $HYBRIXD/web-wallet/common)$RESET"
         fi
     else
-        echo "$RED [!] hybrixd/web-wallet/common not linked.$RESET"
+        echo "$RED [!] hybrixd/web-wallet/common not linked (Known Issue).$RESET"
     fi
 
     if [ -L "$HYBRIXD/web-wallet/interface" ]; then
@@ -140,7 +140,7 @@ if [ -d "$HYBRIXD/web-wallet" ]; then
             echo "     Found:    $(readlink $HYBRIXD/web-wallet/node_binaries)$RESET"
         fi
     else
-        echo "$RED [!] hybrixd/web-wallet/node_binaries not linked.$RESET"
+        echo "$RED [!] hybrixd/web-wallet/node_binaries not linked (Known Issue).$RESET"
     fi
 
     cd "$HYBRIXD/web-wallet/"
