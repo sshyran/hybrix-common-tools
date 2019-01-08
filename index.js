@@ -149,12 +149,7 @@ function readSession (userKeys, nonce, sessionData, onError) {
   var sess_bin = nacl.from_hex(sessionData);
 
   // user's session nonce is used for session_data
-  console.log('TRY');
-  try {
-    var session_data = nacl.crypto_box_open(sess_bin, nonce, userKeys.boxPk, userKeys.boxSk);
-  } catch (e) {
-    console.log('CATCH', e);
-  }
+  var session_data = nacl.crypto_box_open(sess_bin, nonce, userKeys.boxPk, userKeys.boxSk);
 
   var session_string = nacl.decode_utf8(session_data);
   return JSON.parse(session_string);
