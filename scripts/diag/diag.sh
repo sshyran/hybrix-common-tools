@@ -145,6 +145,13 @@ if [ -d "$HYBRIXD/web-wallet" ]; then
 
     cd "$HYBRIXD/web-wallet/"
     checkGit
+
+    if [ "$(sh $HYBRIXD/web-wallet/scripts/npm/check.sh)" = "UP TO DATE" ]; then
+        echo " [.] Distributables up to date."
+    else
+        echo "$RED [!] Source files modified. Distributables not up te date.$RESET"
+
+    fi
 else
     echo " [.] hybrixd/web-wallet not found."
 fi
@@ -297,6 +304,13 @@ if [ -d "$HYBRIXD/deterministic" ]; then
     cd "$HYBRIXD/deterministic/"
     checkGit
 
+    if [ "$(sh $HYBRIXD/deterministic/scripts/npm/check.sh)" = "UP TO DATE" ]; then
+        echo " [.] Distributables up to date."
+    else
+        echo "$RED [!] Source files modified. Distributables not up te date.$RESET"
+
+    fi
+
 else
     echo " [.] hybrixd/deterministic not found."
 fi
@@ -334,6 +348,13 @@ if [ -d "$HYBRIXD/interface" ]; then
 
     cd "$HYBRIXD/interface/"
     checkGit
+
+    if [ "$(sh $HYBRIXD/interface/scripts/npm/check.sh)" = "UP TO DATE" ]; then
+        echo " [.] Distributables up to date."
+    else
+        echo "$RED [!] Source files modified. Distributables not up te date.$RESET"
+
+    fi
 
 else
     echo " [.] hybrixd/interface not found."
