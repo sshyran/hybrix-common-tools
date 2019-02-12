@@ -165,14 +165,12 @@ if [ -d "$HYBRIXD/web-wallet" ]; then
 
     cd "$HYBRIXD/web-wallet/"
     checkGit
-
     if [ "$(sh $HYBRIXD/web-wallet/scripts/npm/check.sh)" = "UP TO DATE" ]; then
         echo " [.] Distributables up to date."
     else
         echo "$RED [!] Source files modified. Distributables not up te date.$RESET"
 
     fi
-
     checkESLint "web-wallet"
 
 else

@@ -20,7 +20,7 @@ ESLINT="$(git rev-parse --show-toplevel)/../common/node_modules/.bin/eslint"
 
 echo "\nPre Push:\n"
 
-if [[ "$STAGED_FILES" = "" ]]; then
+if [ "$STAGED_FILES" = "" ]; then
   echo "\033[42mNO CHANGES\033[0m\n"
   exit 0
 fi
@@ -30,7 +30,7 @@ PASS=true
 echo "\nValidating Javascript:\n"
 
 # Check for eslint
-if [[ ! -x "$ESLINT" ]]; then
+if [ ! -x "$ESLINT" ]; then
   echo "\t\033[41mPlease install ESlint and dependencies\033[0m (npm i eslint-plugin-promise eslint-plugin-standard eslint-plugin-react)"
   echo "\t\033[41mPlease install ESlint Standard config\033[0m (npm i eslint-config-standard)"
   echo "\t\033[41mPlease install ESlint Semi-standard config\033[0m (npm i eslint-config-semistandard)"
@@ -41,7 +41,7 @@ for FILE in $STAGED_FILES
 do
   $ESLINT "$FILE" -c "$HYBRIXD/common/hooks/eslintrc.js"
 
-  if [[ "$?" == 0 ]]; then
+  if [ "$?" = "0" ]; then
     echo "\t\033[32mESLint Passed: $FILE\033[0m"
   else
     echo "\t\033[41mESLint Failed: $FILE\033[0m"
@@ -51,7 +51,7 @@ done
 
 echo "\nJavascript validation completed!\n"
 
-if ! $PASS; then
+if [ "$PASS" = "false" ]; then
   echo "\033[41mCOMMIT FAILED:\033[0m Your commit contains files that should pass ESLint but do not. Please fix the ESLint errors and try again.\n"
   exit 1
 else
