@@ -53,6 +53,25 @@ checkGit(){
     fi
 }
 
+checkESLint(){
+    if [ -z $(diff -q "$HYBRIXD/$1/.eslintrc.js" "$HYBRIXD/common/hooks/eslintrc.js") ]; then
+        echo " [.] hybrixd/$1/.eslintrc.js is valid."
+    else
+        echo "$RED [!] hybrixd/$1/.eslintrc.js is modified .$RESET"
+    fi
+
+    if [ -z $(diff -q "$HYBRIXD/$1/.git/hooks/pre-push" "$HYBRIXD/common/hooks/pre-push") ]; then
+        echo " [.] hybrixd/$1/pre-push is valid."
+    else
+        echo "$RED [!] hybrixd/$1/pre-push is modified .$RESET"
+    fi
+
+    if [ -z $(diff -q "$HYBRIXD/$1/.git/hooks/commit-msg" "$HYBRIXD/common/hooks/commit-msg") ]; then
+        echo " [.] hybrixd/$1/commit-msg is valid."
+    else
+        echo "$RED [!] hybrixd/$1/commit-msg is modified .$RESET"
+    fi
+}
 
 echo "[.] Validate hybrixd/node."
 if [ -d "$HYBRIXD/node" ]; then
@@ -84,12 +103,13 @@ if [ -d "$HYBRIXD/node" ]; then
         echo "$RED [!] hybrixd/node/node_binaries not linked.$RESET"
     fi
 
+
     #TODO interface dist
     #TODO determinstic dist
     #TODO web-wallet dist
 
     #TODO check if up to date
-
+    checkESLint "node"
 
     cd "$HYBRIXD/node/"
     checkGit
@@ -152,6 +172,9 @@ if [ -d "$HYBRIXD/web-wallet" ]; then
         echo "$RED [!] Source files modified. Distributables not up te date.$RESET"
 
     fi
+
+    checkESLint "web-wallet"
+
 else
     echo " [.] hybrixd/web-wallet not found."
 fi
@@ -199,6 +222,7 @@ if [ -d "$HYBRIXD/tui-wallet" ]; then
     else
         echo "$RED [!] hybrixd/tui-wallet/node_binaries not linked.$RESET"
     fi
+    checkESLint "tui-wallet"
 
     cd "$HYBRIXD/tui-wallet/"
     checkGit
@@ -249,6 +273,8 @@ if [ -d "$HYBRIXD/cli-wallet" ]; then
     else
         echo "$RED [!] hybrixd/cli-wallet/node_binaries not linked.$RESET"
     fi
+
+    checkESLint "cli-wallet"
 
     cd "$HYBRIXD/cli-wallet/"
     checkGit
@@ -301,6 +327,8 @@ if [ -d "$HYBRIXD/deterministic" ]; then
         echo "$RED [!] hybrixd/deterministic/node_binaries not linked.$RESET"
     fi
 
+    checkESLint "deterministic"
+
     cd "$HYBRIXD/deterministic/"
     checkGit
 
@@ -346,6 +374,8 @@ if [ -d "$HYBRIXD/interface" ]; then
         echo "$RED [!] hybrixd/interface/node_binaries not linked.$RESET"
     fi
 
+    checkESLint "interface"
+
     cd "$HYBRIXD/interface/"
     checkGit
 
@@ -356,6 +386,7 @@ if [ -d "$HYBRIXD/interface" ]; then
 
     fi
 
+
 else
     echo " [.] hybrixd/interface not found."
 fi
@@ -363,6 +394,9 @@ fi
 echo "[.] Validate hybrixd/common."
 if [ -d "$HYBRIXD/common" ]; then
     echo " [.] hybrixd/common found."
+
+    checkESLint "common"
+
     cd "$HYBRIXD/common"
     checkGit
 
