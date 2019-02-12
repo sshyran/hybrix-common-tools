@@ -16,6 +16,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "sh ./scripts/setup/setup.sh",
+    "diag": "sh scripts/diag/diag.sh",
     "lint": "sh ./scripts/lint/lint.sh common"
   },
   "repository": {
