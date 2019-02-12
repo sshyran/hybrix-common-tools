@@ -2,7 +2,7 @@
 
 # $HYBRIXD/.git/hooks  => $HYBRIXD
 SCRIPTDIR="`dirname \"$0\"`"
-REPO="`cd \"$SCRIPTDIR/..\" && pwd`"
+REPO="`cd \"$SCRIPTDIR/../..\" && pwd`"
 HYBRIXD="$REPO/../"
 COMMON="$HYBRIXD/common"
 
