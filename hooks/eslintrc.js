@@ -14,6 +14,7 @@ module.exports = {
     'no-global-assign': 1,
     'no-unused-vars': 1,
     'camelcase': 1,
-    'no-var': 1
+    'no-var': 1,
+    'object-curly-spacing': 0
   }
 };
