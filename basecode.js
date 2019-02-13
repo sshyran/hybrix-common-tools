@@ -1,7 +1,9 @@
+let basex = require('base-x');
+
 // replace multiple strings
 // example: replacebulk("testme",['es','me'],['1','2']); => "t1t2"
 function replaceBulk (str, findArray, replaceArray) {
-  var i; var regex = []; var map = {};
+  let i; let regex = []; let map = {};
   for (i = 0; i < findArray.length; i++) {
     regex.push(findArray[i].replace(/([-[\]{}()*+?.\\^$|#,])/g, '\\$1'));
     map[findArray[i]] = replaceArray[i];
@@ -14,14 +16,14 @@ function replaceBulk (str, findArray, replaceArray) {
 }
 
 function asciitable () {
-  var x = '';
-  for (var i = 0; i < 256; i++) { x = x + String.fromCharCode(i); }
+  let x = '';
+  for (let i = 0; i < 256; i++) { x = x + String.fromCharCode(i); }
   return x;
 }
 
 function recode (source, target, input) {
-  var BASE = function (val) {
-    var out;
+  let BASE = function (val) {
+    let out;
     switch (val) {
       case 2: out = '01'; break;
       case 8: out = '01234567'; break;
@@ -76,7 +78,7 @@ function recode (source, target, input) {
       if (!target) { target = BASE(256); }
       break;
   }
-  var output = new Buffer(require('base-x')(target).encode(new Buffer(require('base-x')(source).decode(input)))).toString();
+  let output = new Buffer(basex(target).encode(new Buffer(basex(source).decode(input)))).toString();
   return output;
 }
 

@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "base-x": "*"
+  },
   "devDependencies": {
     "eslint": "^5.8.0",
     "eslint-plugin-import": "*",
