@@ -39,14 +39,18 @@ fi
 
 for FILE in $STAGED_FILES
 do
-  $ESLINT "$FILE" -c "$HYBRIXD/common/hooks/eslintrc.js"
+    if [ -f "$FILE" ]; then
+        $ESLINT "$FILE" -c "$HYBRIXD/common/hooks/eslintrc.js"
 
-  if [ "$?" = "0" ]; then
-    echo "\t\033[32mESLint Passed: $FILE\033[0m"
-  else
-    echo "\t\033[41mESLint Failed: $FILE\033[0m"
-    PASS=false
-  fi
+        if [ "$?" = "0" ]; then
+            echo "\t\033[32mESLint Passed: $FILE\033[0m"
+        else
+            echo "\t\033[41mESLint Failed: $FILE\033[0m"
+            PASS=false
+        fi
+    else
+        echo "\tFile was removed ESLint skipped: $FILE"
+    fi
 done
 
 echo "\nJavascript validation completed!\n"
