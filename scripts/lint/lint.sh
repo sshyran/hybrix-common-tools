@@ -31,25 +31,24 @@ echo "\nValidating Javascript:\n"
 
 # Check for eslint
 if [ ! -x "$ESLINT" ]; then
-  echo "\t\033[41mPlease install ESlint and dependencies\033[0m (npm i eslint-plugin-promise eslint-plugin-standard eslint-plugin-react)"
-  echo "\t\033[41mPlease install ESlint Standard config\033[0m (npm i eslint-config-standard)"
-  echo "\t\033[41mPlease install ESlint Semi-standard config\033[0m (npm i eslint-config-semistandard)"
+  echo "\033[41mPlease install ESlint and dependencies\033[0m (npm i eslint-plugin-promise eslint-plugin-standard eslint-plugin-react)"
+  echo "\033[41mPlease install ESlint Standard config\033[0m (npm i eslint-config-standard)"
+  echo "\033[41mPlease install ESlint Semi-standard config\033[0m (npm i eslint-config-semistandard)"
   exit 1
 fi
 
 for FILE in $STAGED_FILES
 do
     if [ -f "$FILE" ]; then
-        $ESLINT "$FILE" -c "$HYBRIXD/common/hooks/eslintrc.js"
+        $ESLINT "$FILE"  --quiet -c "$HYBRIXD/common/hooks/eslintrc.js"
 
         if [ "$?" = "0" ]; then
-            echo "\t\033[32mESLint Passed: $FILE\033[0m"
+            echo "\033[32mESLint Passed: $FILE\033[0m"
         else
-            echo "\t\033[41mESLint Failed: $FILE\033[0m"
             PASS=false
         fi
     else
-        echo "\tFile was removed ESLint skipped: $FILE"
+        echo "File was removed ESLint skipped: $FILE"
     fi
 done
 
