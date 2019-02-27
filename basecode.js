@@ -59,7 +59,7 @@ function recode (source, target, input) {
       source = BASE(2);
       break;
     default:
-      if (source === 'ascii' || source === 'utf-8' || source === 'utf8') { source = BASE(256); }
+      if (source === 'ascii' || source === 'string' || source === 'utf-8' || source === 'utf8') { source = 'string'; }
       if (source === 'bech32' || source === 'RFC4648') {
         input = replaceBulk(input.toUpperCase(), ['0', '1', '8', '9'], ['O', 'I', 'B', 'G']).replace(/[^A-Z2-7]/g, '');
         source = BASE('RFC4648');
@@ -73,12 +73,18 @@ function recode (source, target, input) {
     case 'oct': target = BASE(8); break;
     case 'bin': target = BASE(2); break;
     default:
-      if (target === 'ascii' || target === 'utf-8' || target === 'utf8') { target = BASE(256); }
+      if (target === 'ascii' || target === 'string' || target === 'utf-8' || target === 'utf8') { target = 'string'; }
       if (target === 'bech32' || target === 'RFC4648') { target = BASE('RFC4648'); }
-      if (!target) { target = BASE(256); }
+      if (!target) { target = 'string'; }
       break;
   }
-  let output = new Buffer(basex(target).encode(new Buffer(basex(source).decode(input)))).toString();
+  let buffer = new Buffer( source==='string'?input:basex(source).decode(input) );
+  let output;
+  if(target==='string') {
+    output = new Buffer( buffer.toString() ).toString();
+  } else {
+    output = new Buffer(basex(target).encode( buffer )).toString();
+  }
   return output;
 }
 
