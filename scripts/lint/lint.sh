@@ -19,7 +19,7 @@ fi
 
 IFS=$'\n'
 LINTLIST="/tmp/hybrixlint.list"
-git diff --stat --cached --name-only master | grep ".jsx\{0,1\}$" | grep -v "node_" > $LINTLIST
+git diff --stat --cached --name-only master | grep ".jsx\{0,1\}$" | grep -v "node_" | grep -v "hybrix-lib.nodejs.js" | grep -v "hybrix-lib.web.js" > $LINTLIST
 ESLINT="$HYBRIXD/common/node_modules/.bin/eslint"
 
 echo "$STAGED_FILES"
