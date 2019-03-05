@@ -46,13 +46,17 @@ if [ ! -f "$ESLINT" ]; then
 fi
 
 while read -r FILE; do
-    "$ESLINT" "$FILE"  --quiet -c "$HYBRIXD/common/hooks/eslintrc.js"
+    if [ -f "$FILE" ]; then
+        "$ESLINT" "$FILE"  --quiet -c "$HYBRIXD/common/hooks/eslintrc.js"
 
-    if [ "$?" -eq 0 ]; then
-        echo "\033[32mESLint Passed: $FILE\033[0m"
+        if [ "$?" -eq 0 ]; then
+            echo "\033[32mESLint Passed: $FILE\033[0m"
+        else
+            echo "\033[31mESLint Failed: $FILE\033[0m"
+            PASS=false
+        fi
     else
-        echo "\033[31mESLint Failed: $FILE\033[0m"
-        PASS=false
+        echo "ESLint Skipped (File removed): $FILE"
     fi
 done < "$LINTLIST"
 
