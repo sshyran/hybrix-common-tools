@@ -76,7 +76,7 @@ function solve (hint, difficulty, dataCallback, errorCallback, progressCallback)
   for (let taskId = 0; taskId < TASK_GRANULARITY; taskId++) { // Subdivide the work into tasks
     tasks[taskId] = {
       step: 0,
-      interval: setInterval(executeTaskStep(tasks, taskId, hint, difficulty, dataCallback, errorCallback, progressCallback), 1)
+      interval: setInterval(executeTaskStep(tasks, taskId, hint, difficulty, dataCallback, errorCallback, progressCallback), 100)
     };
   }
 }
