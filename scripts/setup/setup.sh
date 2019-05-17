@@ -6,10 +6,12 @@ WHEREAMI="`pwd`"
 SCRIPTDIR="`dirname \"$0\"`"
 HYBRIXD="`cd \"$SCRIPTDIR/../../..\" && pwd`"
 
-echo " [i] setup node."
+echo "[i] setup node."
 sh "$HYBRIXD/node/scripts/npm/setup.sh"
-echo " [i] setup interface."
-sh "$HYBRIXD/interface/scripts/npm/setup.sh"
+if [ -d "$HYBRIXD/interface" ];then
+    echo "[i] setup interface."
+    sh "$HYBRIXD/interface/scripts/npm/setup.sh"
+fi
 
 if [ -d "$HYBRIXD/deterministic" ];then
     echo "[i] setup determinstic."

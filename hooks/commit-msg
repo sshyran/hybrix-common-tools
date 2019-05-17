@@ -7,7 +7,8 @@ issueBranch=${ref#$prefix}
 #extract issue nr (expecting branchname to be "issue/$issueNr-$issueName"
 issueNr=$(echo $issueBranch | grep -o  '^[0-9]\+')
 
-if [[ $issueNr =~ ^-?[0-9]+$ ]];then
+if [ "$issueNr" -eq "$issueNr" ] 2>/dev/null
+then
     #append issue nr to commit message
     sed -i.bak -e "1s/^/#$issueNr-/" $1
 fi
