@@ -291,7 +291,7 @@ if [ -d "$HYBRIXD/deterministic" ]; then
         if [ "$(readlink $HYBRIXD/deterministic/common)" = "$HYBRIXD/common" ]; then
             echo " [.] hybrixd/deterministic/common linked correctly."
         else
-            echo "RED [!] hybrixd/deterministic/common linked incorrectly."
+            echo "$RED [!] hybrixd/deterministic/common linked incorrectly."
             echo "     Expected: $HYBRIXD/common"
             echo "     Found:    $(readlink $HYBRIXD/deterministic/common)$RESET"
         fi
