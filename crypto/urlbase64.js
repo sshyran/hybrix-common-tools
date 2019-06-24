@@ -1,3 +1,4 @@
+const LZString = require('./lz-string');
 var c1, c2, c3;
 
 var UrlBase64 = (function () {
