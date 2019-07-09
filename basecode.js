@@ -1,4 +1,4 @@
-let basex = require('base-x');
+let basex = require('./base-x.js');
 
 // replace multiple strings
 // example: replacebulk("testme",['es','me'],['1','2']); => "t1t2"
@@ -17,7 +17,7 @@ function replaceBulk (str, findArray, replaceArray) {
 
 function asciitable () {
   let x = '';
-  for (let i = 0; i < 256; i++) { x = x + String.fromCharCode(i); }
+  for (let i = 0; i < 255; i++) { x = x + String.fromCharCode(i); }
   return x;
 }
 
@@ -37,6 +37,12 @@ function recode (source, target, input) {
   };
   if (typeof target === 'undefined') { target = source; source = BASE(256); }
   switch (source) {
+    case 'ascii':
+      source = BASE(256);
+      break;
+    case 'base256':
+      source = BASE(256);
+      break;
     case 'base58':
       input = input.replace(/[^1-9A-HJ-NP-Za-km-z]/g, '');
       source = BASE(58);
@@ -47,7 +53,7 @@ function recode (source, target, input) {
       input = input.toLowerCase().replace(/[^0-9a-f]/g, '');
       break;
     case 'dec':
-      input = input.replace(/[^0-9]/g, '');
+      input = (typeof input==='number')?String(input):input.replace(/[^0-9]/g, '');
       source = BASE(10);
       break;
     case 'oct':
@@ -59,7 +65,7 @@ function recode (source, target, input) {
       source = BASE(2);
       break;
     default:
-      if (source === 'ascii' || source === 'string' || source === 'utf-8' || source === 'utf8') { source = 'string'; }
+      if (source === 'string' || source === 'utf-8') { source = 'string'; }
       if (source === 'bech32' || source === 'RFC4648') {
         input = replaceBulk(input.toUpperCase(), ['0', '1', '8', '9'], ['O', 'I', 'B', 'G']).replace(/[^A-Z2-7]/g, '');
         source = BASE('RFC4648');
@@ -67,13 +73,15 @@ function recode (source, target, input) {
       break;
   }
   switch (target) {
+    case 'ascii': target = BASE(256); break;
+    case 'base256': target = BASE(256); break;
     case 'base58': target = BASE(58); break;
     case 'hex': target = BASE(16); break;
     case 'dec': target = BASE(10); break;
     case 'oct': target = BASE(8); break;
     case 'bin': target = BASE(2); break;
     default:
-      if (target === 'ascii' || target === 'string' || target === 'utf-8' || target === 'utf8') { target = 'string'; }
+      if (target === 'string' || target === 'utf-8' || target === 'utf8') { target = 'string'; }
       if (target === 'bech32' || target === 'RFC4648') { target = BASE('RFC4648'); }
       if (!target) { target = 'string'; }
       break;
