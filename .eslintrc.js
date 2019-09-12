@@ -15,8 +15,11 @@ module.exports = {
     'no-unused-vars': 1,
     'camelcase': 1,
     'no-var': 1,
-    'no-eval':0,
-    'object-curly-spacing': 0
-
+    'no-eval': 0,
+    'object-curly-spacing': 0,
+    'no-throw-literal': 0,
+    'no-new-func': 0,
+    'new-cap': 0,
+    'no-template-curly-in-string': 0
   }
 };
