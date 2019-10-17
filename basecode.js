@@ -1,4 +1,4 @@
-let basex = require('./base-x.js');
+const basex = require('./base-x.js');
 
 // replace multiple strings
 // example: replacebulk("testme",['es','me'],['1','2']); => "t1t2"
@@ -15,11 +15,12 @@ function replaceBulk (str, findArray, replaceArray) {
   return str;
 }
 
-function asciitable () {
+function generateAsciiTable () {
   let x = '';
   for (let i = 0; i < 255; i++) { x = x + String.fromCharCode(i); }
   return x;
 }
+const asciiTable = generateAsciiTable();
 
 function recode (source, target, input) {
   let BASE = function (val) {
@@ -30,7 +31,7 @@ function recode (source, target, input) {
       case 10: out = '0123456789'; break;
       case 16: out = '0123456789abcdef'; break;
       case 58: out = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'; break;
-      case 256: out = asciitable(); break;
+      case 256: out = asciiTable; break;
       case 'RFC4648': out = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'; break;
     }
     return out;
@@ -53,7 +54,7 @@ function recode (source, target, input) {
       input = input.toLowerCase().replace(/[^0-9a-f]/g, '');
       break;
     case 'dec':
-      input = (typeof input==='number')?String(input):input.replace(/[^0-9]/g, '');
+      input = (typeof input === 'number') ? String(input) : input.replace(/[^0-9]/g, '');
       source = BASE(10);
       break;
     case 'oct':
@@ -86,12 +87,12 @@ function recode (source, target, input) {
       if (!target) { target = 'string'; }
       break;
   }
-  let buffer = new Buffer( source==='string'?input:basex(source).decode(input) );
+  const buffer = Buffer.from(source === 'string' ? input : basex(source).decode(input));
   let output;
-  if(target==='string') {
-    output = new Buffer( buffer.toString() ).toString();
+  if (target === 'string') {
+    output = Buffer.from(buffer.toString()).toString();
   } else {
-    output = new Buffer(basex(target).encode( buffer )).toString();
+    output = Buffer.from(basex(target).encode(buffer)).toString();
   }
   return output;
 }
