@@ -1,4 +1,4 @@
-let nacl_factory = {
+nacl_factory = {
     instantiate: function(on_ready, optionsOpt) {
         let options = optionsOpt || {};
         let requested_total_memory = options.requested_total_memory || 33554432;

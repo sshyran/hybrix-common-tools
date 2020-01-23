@@ -1,9 +1,10 @@
 common:
   stage: build
+  cache: {}
   script:
     # don't include hidden files and folders
     - rm -rf .[^.]*
-    
+
     # create a version/origin
     - timestamp=$(date -u '+%Y-%m-%dT%H:%M:%S+00:00')
     - mode=release
