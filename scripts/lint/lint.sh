@@ -17,16 +17,33 @@ else
     cd "$1"
 fi
 
+EXIT_CODE=0
+
 echo "[i] Running ShellCheck"
-sh "$SCRIPTDIR/shellcheck.sh" "$1" "$2"
+if sh "$SCRIPTDIR/shellcheck.sh" "$1" "$2"; then
+   echo "[v] ShellCheck succeeded."
+else
+    echo "[v] ShellCheck failed."
+    EXIT_CODE=1
+fi
 
 echo "[i] Running ESlint"
-sh "$SCRIPTDIR/eslint.sh" "$1" "$2"
+if sh "$SCRIPTDIR/eslint.sh" "$1" "$2"; then
+   echo "[v] ESlint succeeded."
+else
+    echo "[v] ESlint failed."
+    EXIT_CODE=1
+fi
 
 echo "[i] Running JSONlint"
-sh "$SCRIPTDIR/jsonlint.sh" "$1" "$2"
+if sh "$SCRIPTDIR/jsonlint.sh" "$1" "$2"; then
+   echo "[v] JSONlint succeeded."
+else
+    echo "[v] JSONlint failed."
+    EXIT_CODE=0
+fi
 
 cd "$WHEREAMI"
 export PATH="$OLDPATH"
 
-exit $?
+exit $EXIT_CODE
