@@ -25,6 +25,8 @@ const asciiTable = generateAsciiTable();
 
 function getEncoding (code) {
   switch (code) {
+    case 'base64':
+      return 'base64';
     case 'ascii':
     case 'base256':
       return asciiTable;
@@ -91,6 +93,8 @@ function recode (source, target, input) {
     return buffer.toString() !== '0';
   } else if (target === 'number') {
     return Number(Buffer.from(basex(targetEncoding).encode(buffer)));
+  } else if (target === 'base64') {
+    return buffer.toString('base64');
   } else {
     return Buffer.from(basex(targetEncoding).encode(buffer)).toString();
   }
