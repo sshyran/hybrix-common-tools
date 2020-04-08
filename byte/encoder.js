@@ -49,7 +49,26 @@ function encodeEnum (output, input, parameter, code) {
   return [0, input, output];
 }
 
+function encodeInteger (output, input, parameter, code) {
+  if(isNaN(input) || (typeof input !== 'string' && typeof input !=='number' )) {
+    return [`Expected bignum of type Number or String containing a number.`];
+  }
+  if (input.length>80) {
+    return [`Expected bignum of size smaller or equal to 80.`];
+  }
+  const maxIdxBits = parameter||8;
+  let numdata = String(input).replace(/[0]+$/,'');
+  let numsize = String(input).length-numdata.length;
+  if(numsize>9) { numdata = numdata.padEnd(String(input).length-9, '0'); numsize=9; }
+  const encodedBignum = baseCode.recode('dec','bin', numdata.concat(numsize) );  
+  const size = encodedBignum.length;
+  const idxBits = baseCode.recode('dec','bin', size).padStart(maxIdxBits, '0');
+  output = idxBits.concat(encodedBignum);
+  return [0, input, output];
+}
+
 exports.encodeFixed = encodeFixed;
 exports.encodeIndexed = encodeIndexed;
 exports.encodeDelimited = encodeDelimited;
 exports.encodeEnum = encodeEnum;
+exports.encodeInteger = encodeInteger;
