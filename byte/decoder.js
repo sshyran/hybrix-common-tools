@@ -74,7 +74,21 @@ function decodeEnum (input, parameter, code) {
   return [0, input, output];
 }
 
+function decodeInteger (input, parameter, code) {
+  const maxIdxBits = parameter||8;
+  const idxBits = input.substr(0, maxIdxBits);
+  const size = Number(baseCode.recode('bin','dec', idxBits));
+  const inputNumber = input.substr(maxIdxBits,size);
+  const encodedBignumber = baseCode.recode('bin','dec', inputNumber);
+  const decodedBignumber = encodedBignumber.substr(0,(encodedBignumber.length-1)).padEnd(Number(encodedBignumber.length-1)+Number(encodedBignumber.substr(-1)), '0');
+  const output = decodedBignumber;
+  input = input.substring(size+maxIdxBits);
+  return [0, input, output];
+}
+
+
 exports.decodeFixed = decodeFixed;
 exports.decodeIndexed = decodeIndexed;
 exports.decodeDelimited = decodeDelimited;
 exports.decodeEnum = decodeEnum;
+exports.decodeInteger = decodeInteger;
